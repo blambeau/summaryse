@@ -16,10 +16,12 @@ class Array
       self.send(agg)
     when Hash
       big = Hash.new{|h,k| h[k] = []}
-      each do |tuple| 
-        (agg.keys & tuple.keys).each{|k| big[k] << tuple[k]}
-      end
-      Hash[big.collect{|k,v| [k,v.summarize(agg[k])]}]
+      each{|t| t.each_pair{|k,v| big[k] << v}}
+      Hash[big.collect{|k,v|
+        if summ = (agg[k] || agg[nil])
+          [k,v.summarize(summ)]
+        end
+      }.compact]
     when Array
       by, agg = agg
       grouped = Hash.new{|h,k| h[k] = []}

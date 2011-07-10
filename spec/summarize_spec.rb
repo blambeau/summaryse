@@ -67,6 +67,11 @@ describe Summarize do
       rel.summarize(control).should eq(:size => 12)
     end
 
+    it "should allow specifying a default behavior" do
+      control = {:size => :max, nil => :union}
+      rel.summarize(control).should eq(:size => 12, :hobbies => [:ruby, :music])
+    end
+
   end # Hash argument
   
 end
