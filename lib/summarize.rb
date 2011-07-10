@@ -5,7 +5,9 @@ class Array
     when NilClass
       first
     when :avg
-      inject(:+).to_f/size;
+      inject(:+).to_f/size
+    when :count
+      size
     when :intersection
       inject(:&)
     when :sum

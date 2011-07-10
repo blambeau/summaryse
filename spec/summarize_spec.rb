@@ -13,6 +13,11 @@ describe Summarize do
     it "should recognize avg" do
       numbers.summarize(:avg).should eq((15 + 3 + 17 + 4 + 12)/5.0)
     end
+    
+    it "should recognize count" do
+      numbers.summarize(:count).should eq(5)
+      arrays.summarize(:count).should eq(2)
+    end
 
     it "should recognize intersection" do
       arrays.summarize(:intersection).should eq([12])
