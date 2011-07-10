@@ -2,6 +2,8 @@ class Array
 
   def summarize(agg)
     case agg
+    when Proc
+      agg.call(self)
     when :avg
       inject(:+).to_f/size
     when :count

@@ -5,6 +5,16 @@ describe Summarize do
     Summarize.const_defined?(:VERSION).should be_true
   end
 
+  describe "when called with a Proc argument" do
+
+    let(:numbers){ [15, 3, 17, 4, 12] } 
+
+    it "should simply call the proc with the array" do
+      numbers.summarize(lambda{|a| "hello"}).should eq("hello")
+    end
+   
+  end 
+
   describe "when called with a Symbol argument" do
     
     let(:numbers){ [15, 3, 17, 4, 12] } 
@@ -32,11 +42,11 @@ describe Summarize do
     end
 
     it "should recognize min" do
-      numbers.summarize(:min).should == 3
+      numbers.summarize(:min).should eq(3)
     end
 
     it "should recognize max" do
-      numbers.summarize(:max).should == 17
+      numbers.summarize(:max).should eq(17)
     end
 
     it "should recognize sum" do
@@ -70,6 +80,11 @@ describe Summarize do
     it "should allow specifying a default behavior" do
       control = {:size => :max, nil => :union}
       rel.summarize(control).should eq(:size => 12, :hobbies => [:ruby, :music])
+    end
+
+    it "should support having inner Procs" do
+      control = {:size => lambda{|a| "hello"}}
+      rel.summarize(control).should eq(:size => "hello")
     end
 
   end # Hash argument
