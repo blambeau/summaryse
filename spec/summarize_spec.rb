@@ -5,11 +5,11 @@ describe Summarize do
     Summarize.const_defined?(:VERSION).should be_true
   end
 
-  let(:numbers){ [15, 3, 17, 4, 12] } 
-  let(:arrays){ [[15, 3, 12], [17, 4, 12]] } 
-
-  describe "when called with a simple symbol" do
+  describe "when called with a Symbol argument" do
     
+    let(:numbers){ [15, 3, 17, 4, 12] } 
+    let(:arrays){ [[15, 3, 12], [17, 4, 12]] } 
+
     it "should recognize avg" do
       numbers.summarize(:avg).should eq((15 + 3 + 17 + 4 + 12)/5.0)
     end
@@ -40,6 +40,20 @@ describe Summarize do
       arrays.summarize(:union).should == [15, 3, 12, 17, 4]
     end
 
-  end
+  end # Symbol argument
+
+  describe "when called with a Hash argument" do
+
+    let(:rel){[
+      { :size => 12, :hobbies => [:ruby] },
+      { :size => 1,  :hobbies => [:music] }
+    ]}
+
+    it "should allow simple sub-summarizations" do
+      control = { :size => :max, :hobbies => :union }
+      rel.summarize(control).should == { :size => 12, :hobbies => [:ruby, :music] }
+    end
+
+  end # Hash argument
   
 end
