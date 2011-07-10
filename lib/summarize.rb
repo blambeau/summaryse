@@ -2,8 +2,6 @@ class Array
 
   def summarize(agg)
     case agg
-    when NilClass
-      first
     when :avg
       inject(:+).to_f/size
     when :count
@@ -18,7 +16,9 @@ class Array
       self.send(agg)
     when Hash
       big = Hash.new{|h,k| h[k] = []}
-      each{|tuple| tuple.each_pair{|k,v| big[k] << v}}
+      each do |tuple| 
+        (agg.keys & tuple.keys).each{|k| big[k] << tuple[k]}
+      end
       Hash[big.collect{|k,v| [k,v.summarize(agg[k])]}]
     when Array
       by, agg = agg

@@ -45,7 +45,7 @@ describe Summarize do
     end
 
     it "should recognize union" do
-      arrays.summarize(:union).should == [15, 3, 12, 17, 4]
+      arrays.summarize(:union).should eq([15, 3, 12, 17, 4])
     end
 
   end # Symbol argument
@@ -59,7 +59,12 @@ describe Summarize do
 
     it "should allow simple sub-summarizations" do
       control = { :size => :max, :hobbies => :union }
-      rel.summarize(control).should == { :size => 12, :hobbies => [:ruby, :music] }
+      rel.summarize(control).should eq(:size => 12, :hobbies => [:ruby, :music])
+    end
+
+    it "should not keep non summarized arguments by default" do
+      control = {:size => :max}
+      rel.summarize(control).should eq(:size => 12)
     end
 
   end # Hash argument
