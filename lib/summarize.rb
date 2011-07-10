@@ -27,7 +27,11 @@ class Array
     when Array
       by, agg = agg
       grouped = Hash.new{|h,k| h[k] = []}
-      flatten.each{|tuple| grouped[tuple[by]] << tuple}
+      flatten.each{|t|
+        key = Hash[by.collect{|k| [k, t[k]] }]
+        grouped[key] << t
+      }
+      agg = agg.merge(Hash[by.collect{|k| [k,:first]}])
       grouped.values.collect{|rel| rel.summarize(agg)}
     end
   end

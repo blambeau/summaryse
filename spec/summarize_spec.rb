@@ -88,5 +88,26 @@ describe Summarize do
     end
 
   end # Hash argument
+
+  describe "when called with an Array argument" do
+    let(:array){[
+      [ {:version => "1.8", :size => 12},
+        {:version => "1.9", :size => 16} ],
+      [ {:version => "2.0", :size => 99},
+        {:version => "1.8", :size => 10} ]
+    ]}
+
+    it "should union then summarize" do
+      control = [ [:version], {:size => :min} ]
+      array.summarize(control).sort{|i,j|
+        i[:version] <=> j[:version]
+      }.should eq([
+        {:version => "1.8", :size => 10},
+        {:version => "1.9", :size => 16},
+        {:version => "2.0", :size => 99}
+      ])
+    end
+
+  end
   
 end
