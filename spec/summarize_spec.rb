@@ -19,8 +19,16 @@ describe Summarize do
       arrays.summarize(:count).should eq(2)
     end
 
+    it "should recognize first" do
+      numbers.summarize(:first).should eq(15)
+    end
+
     it "should recognize intersection" do
       arrays.summarize(:intersection).should eq([12])
+    end
+
+    it "should recognize last" do
+      numbers.summarize(:last).should eq(12)
     end
 
     it "should recognize min" do
