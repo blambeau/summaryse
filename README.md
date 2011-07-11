@@ -11,6 +11,11 @@ complex values like **arrays of hashes that contain hashes and array of hashes
 that...** A (complex) YAML configuration file typically yields such value. We 
 start with such opinionated example first. 
 
+## Links
+
+* {http://rubydoc.info/github/blambeau/summaryse/master/frames} (read this file there!)
+* {http://github.com/blambeau/summaryse} (source code)
+
 ## An opinionated example -- YAML merging
 
 In many projects of mine including 
@@ -169,7 +174,26 @@ returned hashes are in order of encountered 'by key' values. That is, in the
 example above, yard comes before summaryse that comes before treetop because 
 this is the order in which they have been seen initially.
 
-# Links
+# By the way, why this stupid name?
 
-http://github.com/blambeau/summaryse
+Just because summarize was already an {https://rubygems.org/gems/summarize existing gem}. 
+Summaryse is also much less likely to cause a name clash on the Array class. And
+I'm a french-speaking developer :-)
 
+And why summarize, then? Because this is much inspired by (yet not equivalent to) 
+{http://en.wikipedia.org/wiki/D_(data_language_specification)#Tutorial_D TUTORIAL D}'s 
+summarization operator on relations. See my {https://github.com/blambeau/alf alf} 
+project.
+
+# Contribute, Versioning and so on.
+
+As usual: the code is on {http://github.com/blambeau/summaryse github}, I follow
+{http://semver.org/ semantic versioning} (the public API is almost everything but 
+implementation details, that is, the method name, its recognized arguments and 
+the semantics of the returned value), etc.
+
+Now, frankly, you can also copy/paste the source code of this simple array 
+extension in your own project. This tend to be much friendly and much simpler 
+than using a gem, IMHO. Reuse by copy-pasting even has a name:
+{http://revision-zero.org/reuse code scavenging}. 
+ 
