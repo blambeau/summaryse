@@ -13,8 +13,8 @@ variables:
   summary: |-
     Array#summaryse
   description: |-
-    Summarize arrays with full power. Among others, this gem allows merging YAML
-    configuration files,... 
+    Summarize arrays with full power. As a side effect, this gem allows merging 
+    multiple YAML configuration files with power, without sacrifying simplicity... 
   authors: 
     - { name: "Bernard Lambeau", email: blambeau@gmail.com }
   links:
