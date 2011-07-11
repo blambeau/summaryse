@@ -10,22 +10,23 @@
 ## Summaryse's summary
 
 Summaryse provides a core extension, namely Array#summaryse. Oh, sorry, I must 
-add: "OMG, a core extension :-/". If you are aware of any compatibility issue, 
-let me know!
+add: "OMG, a core extension :-/ If you are aware of any compatibility issue, 
+let me know!". 
 
-So, what is Array#summaryse? Roughly, a way to aggregate values, including 
-complex values like **arrays of hashes that contain hashes and array of hashes 
-that...** A (complex) YAML configuration file typically yields such value. We 
-start with such opinionated example first. 
+So, what is Array#summaryse? Roughly, a way to computate aggregations. This goes
+from simple aggregations on simple values (summing integers), to complex aggregations 
+on complex values (merging arrays of hashes that contain hashes and array of 
+hashes that...). Below is a typical use case showing how Array#summaryse can be
+used to merge YAML files. Simpler examples are given a bit later.
 
-## An opinionated example -- YAML merging
+## An opinionated use-case -- YAML merging
 
 In many projects of mine including 
 {https://github.com/blambeau/noe noe}, 
 {https://github.com/blambeau/agora agora} or 
-{https://github.com/blambeau/dbagile dbagile}, there is this need of being able 
-to merge YAML files. Merging YAML files is complex because you need full control 
-of how merging applies on specific tree nodes. Summaryse solves this.
+{https://github.com/blambeau/dbagile dbagile}, a common need is merge YAML files. 
+Merging YAML files is complex because you need full control of how merging applies 
+on specific tree nodes. Summaryse solves this very effectively.
 
     # This is left.yaml
     left = YAML.load ...      # syntactically wrong, but to avoid Yard's rewriting
@@ -48,11 +49,11 @@ of how merging applies on specific tree nodes. Summaryse solves this.
 
     # This is merge.yaml
     merge = YAML.load ...
-      hobbies: 
+      hobbies:                # on hobbies, we simply make a set-based union
         :union
-      dependencies: 
-        - [name, version]
-        - for: :union
+      dependencies:           # on dependencies, we apply recursively
+        - [name, version]     #   - 'aggregate by name and version'
+        - for: :union         #   - compute the union of 'for' usage
     ...
     
     # Merge and re-dump
@@ -67,11 +68,13 @@ of how merging applies on specific tree nodes. Summaryse solves this.
       - {name: rspec, version: '2.6.4', for: [ runtime, test ]}
       - {name: rails, version: '3.0',   for: [ runtime       ]}
 
-Below are examples of increasing usefulness and complexity.
+This is a very opinionated, yet already complex, case-study. Let me go back to 
+a more general explanation now.
 
 ## On simple values (integers, floats, ...)
 
-Summarizing an array of simple values yields -> a simple value...
+Summarizing an array of simple values yields -> a simple value... Below are some
+examples on integers. We are in ruby, so duck-typing applies everywhere. 
 
 ### Arithmetics & Algebra
 
@@ -83,8 +86,6 @@ Summarizing an array of simple values yields -> a simple value...
 
     # :avg, same as #inject(:+)/size
     [1, 4, 12, 7].summaryse(:avg)   # => 6.0
-
-Looks trivial? Don't stop here ;-)
 
 ### Array theory
 
@@ -182,10 +183,12 @@ Just because summarize was already an {https://rubygems.org/gems/summarize exist
 Summaryse is also much less likely to cause a name clash on the Array class. And
 I'm a french-speaking developer :-)
 
-And why summarize, then? Because this is much inspired by (yet not equivalent to) 
-{http://en.wikipedia.org/wiki/D_(data_language_specification)#Tutorial_D TUTORIAL D}'s 
-summarization operator on relations. See my {https://github.com/blambeau/alf alf} 
-project.
+And where does 'summarize' come from? The name is inspired by (yet not equivalent 
+to) {http://en.wikipedia.org/wiki/D_(data_language_specification)#Tutorial_D 
+TUTORIAL D}'s summarization operator on relations. 
+See my {https://github.com/blambeau/alf alf} project. Array#summaryse is
+rubyiesque in mind and does not conform to a purely relational vision of 
+summarization, though.
 
 # Contribute, Versioning and so on.
 
