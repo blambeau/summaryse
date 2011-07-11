@@ -26,13 +26,15 @@ class Array
       }.compact]
     when Array
       by, agg = agg
+      keys = []
       grouped = Hash.new{|h,k| h[k] = []}
       flatten.each{|t|
         key = Hash[by.collect{|k| [k, t[k]] }]
+        keys << key
         grouped[key] << t
       }
-      agg = agg.merge(Hash[by.collect{|k| [k,:first]}])
-      grouped.values.collect{|rel| rel.summarize(agg)}
+      agg = agg.merge(Hash[by.collect{|k| [k, :first]}])
+      keys.uniq.collect{|key| grouped[key].summarize(agg)}
     end
   end
 

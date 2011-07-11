@@ -91,19 +91,17 @@ describe Summarize do
 
   describe "when called with an Array argument" do
     let(:array){[
-      [ {:version => "1.8", :size => 12},
-        {:version => "1.9", :size => 16} ],
+      [ {:version => "1.9", :size => 16},
+        {:version => "1.8", :size => 12} ],
       [ {:version => "2.0", :size => 99},
         {:version => "1.8", :size => 10} ]
     ]}
 
-    it "should union then summarize" do
+    it "should union then summarize while respecting by key order" do
       control = [ [:version], {:size => :min} ]
-      array.summarize(control).sort{|i,j|
-        i[:version] <=> j[:version]
-      }.should eq([
-        {:version => "1.8", :size => 10},
+      array.summarize(control).should eq([
         {:version => "1.9", :size => 16},
+        {:version => "1.8", :size => 10},
         {:version => "2.0", :size => 99}
       ])
     end
