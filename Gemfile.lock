@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    summarize (1.0.0)
+    summaryse (1.0.0)
 
 GEM
   remote: http://rubygems.org/
@@ -29,6 +29,6 @@ DEPENDENCIES
   bundler (~> 1.0)
   rake (~> 0.9.2)
   rspec (~> 2.4.0)
-  summarize!
+  summaryse!
   wlang (~> 0.10.1)
   yard (~> 0.7.2)

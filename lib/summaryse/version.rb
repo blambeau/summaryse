@@ -1,4 +1,4 @@
-module Summarize
+module Summaryse
   module Version
   
     MAJOR = 1

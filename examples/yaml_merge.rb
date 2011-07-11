@@ -1,5 +1,5 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'summarize'
+require 'summaryse'
 require 'yaml'
 
 # This is left.yaml
@@ -30,4 +30,4 @@ merge = YAML.load <<-M
     - for: :union
 M
 
-puts [ left, right ].summarize(merge).to_yaml
+puts [ left, right ].summaryse(merge).to_yaml

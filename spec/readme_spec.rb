@@ -4,64 +4,64 @@ describe "README file" do
   it 'should provide correct examples' do
 
     # :count, same as #size
-    [1, 4, 12, 7].summarize(:count).should eq(4)
+    [1, 4, 12, 7].summaryse(:count).should eq(4)
 
     # :sum, same as #inject(:+)
-    [1, 4, 12, 7].summarize(:sum).should eq(24)
+    [1, 4, 12, 7].summaryse(:sum).should eq(24)
 
     # :avg, same as #inject(:+)/size
-    [1, 4, 12, 7].summarize(:avg).should eq(6.0)
+    [1, 4, 12, 7].summaryse(:avg).should eq(6.0)
 
     # :min, same as #min
-    [1, 4, 12, 7].summarize(:min).should eq(1)
+    [1, 4, 12, 7].summaryse(:min).should eq(1)
 
     # :max, same as #max
-    [1, 4, 12, 7].summarize(:max).should eq(12)
+    [1, 4, 12, 7].summaryse(:max).should eq(12)
 
     # :first, same as #first
-    [1, 4, 12, 7].summarize(:first).should eq(1)
+    [1, 4, 12, 7].summaryse(:first).should eq(1)
 
     # :last, same as #last
-    [1, 4, 12, 7].summarize(:last).should eq(7)
+    [1, 4, 12, 7].summaryse(:last).should eq(7)
 
     # :union, same as #inject(:|)
-    [ [1, 4], [12, 1, 7], [1] ].summarize(:union).should eq([1, 4, 12, 7])
+    [ [1, 4], [12, 1, 7], [1] ].summaryse(:union).should eq([1, 4, 12, 7])
 
     # :intersection, same as #inject(:&)
-    [ [1, 4], [12, 1, 7], [1] ].summarize(:intersection).should eq([1])
+    [ [1, 4], [12, 1, 7], [1] ].summaryse(:intersection).should eq([1])
 
     [
       { :hobbies => [:ruby],  :size => 12 },
       { :hobbies => [:music], :size => 17 }
-    ].summarize(:hobbies => :union, :size => :max).should eq(
+    ].summaryse(:hobbies => :union, :size => :max).should eq(
       :hobbies => [:ruby, :music], :size => 17
     )
 
     [
       { :hobbies => [:ruby],  :size => 12 },
       { :hobbies => [:music], :size => 17 }
-    ].summarize(:hobbies => :union, nil => :first).should eq(
+    ].summaryse(:hobbies => :union, nil => :first).should eq(
       :hobbies => [:ruby, :music], :size => 12
     )
 
     [
       { :hobbies => [:ruby],  :size => 12 },
       { :hobbies => [:music], :size => 17 }
-    ].summarize(:hobbies => :union, :size => lambda{|a|
+    ].summaryse(:hobbies => :union, :size => lambda{|a|
       a.inject(:+).to_f
     }).should eq(:hobbies => [:ruby, :music], :size => 29.0)
 
     [
       { :hobbies => [:ruby],  :size => 12 },
       { :hobbies => [:music], :size => 17 }
-    ].summarize(:hobbies => :union, :size => lambda{|a|
+    ].summaryse(:hobbies => :union, :size => lambda{|a|
       a.join(', ')
     }).should eq(:hobbies => [:ruby, :music], :size => "12, 17")
 
     [ 
       { :hobbies => {:day => [:ruby], :night => [:ruby] } },
       { :hobbies => {:day => [],      :night => [:sleep]} }
-    ].summarize(:hobbies => {:day => :union, :night => :union}).should eq(
+    ].summaryse(:hobbies => {:day => :union, :night => :union}).should eq(
       :hobbies => {:day => [:ruby], :night => [:ruby, :sleep]}
     )
 
@@ -106,7 +106,7 @@ describe "README file" do
         - {name: rspec, version: '2.6.4', for: [ runtime, test ]}
         - {name: rails, version: '3.0',   for: [ runtime       ]}
     Y
-    [ left, right ].summarize(merge).should eq(exp)
+    [ left, right ].summaryse(merge).should eq(exp)
   end
 
 end

@@ -1,6 +1,6 @@
 class Array
 
-  def summarize(agg)
+  def summaryse(agg)
     case agg
     when Proc
       agg.call(self)
@@ -21,7 +21,7 @@ class Array
       each{|t| t.each_pair{|k,v| big[k] << v}}
       Hash[big.collect{|k,v|
         if summ = (agg[k] || agg[nil])
-          [k,v.summarize(summ)]
+          [k,v.summaryse(summ)]
         end
       }.compact]
     when Array
@@ -34,10 +34,10 @@ class Array
         grouped[key] << t
       }
       agg = agg.merge(Hash[by.collect{|k| [k, :first]}])
-      keys.uniq.collect{|key| grouped[key].summarize(agg)}
+      keys.uniq.collect{|key| grouped[key].summaryse(agg)}
     end
   end
 
 end
-require "summarize/version"
-require "summarize/loader"
+require "summaryse/version"
+require "summaryse/loader"

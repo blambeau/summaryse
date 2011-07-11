@@ -1,8 +1,8 @@
 # We require your library, mainly to have access to the VERSION number. 
 # Feel free to set $version manually.
 $LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
-require "summarize/version"
-$version = Summarize::Version.to_s
+require "summaryse/version"
+$version = Summaryse::Version.to_s
 
 #
 # This is your Gem specification. Default values are provided so that your library
@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   ################################################################### ABOUT YOUR GEM
   
   # Gem name (required) 
-  s.name = "summarize"
+  s.name = "summaryse"
   
   # Gem version (required)
   s.version = $version
@@ -21,16 +21,16 @@ Gem::Specification.new do |s|
   # A short summary of this gem
   #
   # This is displayed in `gem list -d`.
-  s.summary = "Array#summarize"
+  s.summary = "Array#summaryse"
 
   # A long description of this gem (required)
   #
   # The description should be more detailed than the summary.  For example,
   # you might wish to copy the entire README into the description.
-  s.description = "Summarize arrays with full power. Among others, this gem allows merging YAML\nconfiguration files,... "
+  s.description = "summaryse arrays with full power. Among others, this gem allows merging YAML\nconfiguration files,... "
   
   # The URL of this gem home page (optional)
-  s.homepage = "http://github.com/blambeau/summarize"
+  s.homepage = "http://github.com/blambeau/summaryse"
 
   # Gem publication date (required but auto)
   #

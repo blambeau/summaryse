@@ -1,5 +1,5 @@
-summarize.gemspec
-summarize.noespec
+summaryse.gemspec
+summaryse.noespec
 CHANGELOG.md
 Gemfile
 Gemfile.lock
