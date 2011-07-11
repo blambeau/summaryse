@@ -24,9 +24,9 @@ used to merge YAML files. Simpler examples are given a bit later.
 In many projects of mine including 
 {https://github.com/blambeau/noe noe}, 
 {https://github.com/blambeau/agora agora} or 
-{https://github.com/blambeau/dbagile dbagile}, a common need is merge YAML files. 
-Merging YAML files is complex because you need full control of how merging applies 
-on specific tree nodes. Summaryse solves this very effectively.
+{https://github.com/blambeau/dbagile dbagile}, a common need is to merge YAML 
+files. Merging YAML files is difficult because you need full control of how 
+merging applies on specific tree nodes. Summaryse solves this very effectively.
 
     # This is left.yaml
     left = YAML.load ...      # syntactically wrong, but to avoid Yard's rewriting
@@ -184,11 +184,10 @@ Summaryse is also much less likely to cause a name clash on the Array class. And
 I'm a french-speaking developer :-)
 
 And where does 'summarize' come from? The name is inspired by (yet not equivalent 
-to) {http://en.wikipedia.org/wiki/D_(data_language_specification)#Tutorial_D 
-TUTORIAL D}'s summarization operator on relations. 
-See my {https://github.com/blambeau/alf alf} project. Array#summaryse is
-rubyiesque in mind and does not conform to a purely relational vision of 
-summarization, though.
+to) {http://en.wikipedia.org/wiki/D_(data_language_specification)#Tutorial_D TUTORIAL D}'s 
+summarization operator on relations. See my {https://github.com/blambeau/alf alf} 
+project. Array#summaryse is rubyiesque in mind and does not conform to a purely 
+relational vision of summarization, though.
 
 # Contribute, Versioning and so on.
 
