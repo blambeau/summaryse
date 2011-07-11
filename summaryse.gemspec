@@ -27,7 +27,7 @@ Gem::Specification.new do |s|
   #
   # The description should be more detailed than the summary.  For example,
   # you might wish to copy the entire README into the description.
-  s.description = "summaryse arrays with full power. Among others, this gem allows merging YAML\nconfiguration files,... "
+  s.description = "Summarize arrays with full power. Among others, this gem allows merging YAML\nconfiguration files,... "
   
   # The URL of this gem home page (optional)
   s.homepage = "http://github.com/blambeau/summaryse"

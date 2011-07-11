@@ -7,18 +7,19 @@ variables:
   lower: 
     summaryse
   upper:
-    summaryse
+    Summaryse
   version:
     1.0.0
   summary: |-
     Array#summaryse
   description: |-
-    summaryse arrays with full power. Among others, this gem allows merging YAML
+    Summarize arrays with full power. Among others, this gem allows merging YAML
     configuration files,... 
   authors: 
     - { name: "Bernard Lambeau", email: blambeau@gmail.com }
   links:
     - http://github.com/blambeau/summaryse
+    - http://rubydoc.info/github/blambeau/summaryse/master/frames
   dependencies: 
     - {name: rake,      version: "~> 0.9.2", groups: [development]}
     - {name: bundler,   version: "~> 1.0",   groups: [development]}
