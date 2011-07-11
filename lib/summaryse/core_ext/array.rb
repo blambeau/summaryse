@@ -92,7 +92,7 @@ class Array
         keys << key
         grouped[key] << t
       }
-      agg = agg.merge(Hash[by.collect{|k| [k, :first]}])
+      agg = Hash[by.collect{|k| [k, :first]}].merge(agg)
       keys.uniq.collect{|key| grouped[key].summaryse(agg)}
     end
   end
