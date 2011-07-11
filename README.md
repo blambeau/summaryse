@@ -1,20 +1,22 @@
 # Array#summaryse
 
-summaryse provides a core extension, namely Array#summaryse. Oh, sorry, I must 
-add: "YES, a core extension". If you are aware of any compatibility issue, let
-me know!
-
     [sudo] gem install summaryse
-
-So, what is Array#summaryse? Roughly, a way to aggregate values, including 
-complex values like **arrays of hashes that contain hashes and array of hashes 
-that...** A (complex) YAML configuration file typically yields such value. We 
-start with such opinionated example first. 
 
 ## Links
 
 * {http://rubydoc.info/github/blambeau/summaryse/master/frames} (read this file there!)
 * {http://github.com/blambeau/summaryse} (source code)
+
+## Summaryse's summary
+
+Summaryse provides a core extension, namely Array#summaryse. Oh, sorry, I must 
+add: "OMG, a core extension :-/". If you are aware of any compatibility issue, 
+let me know!
+
+So, what is Array#summaryse? Roughly, a way to aggregate values, including 
+complex values like **arrays of hashes that contain hashes and array of hashes 
+that...** A (complex) YAML configuration file typically yields such value. We 
+start with such opinionated example first. 
 
 ## An opinionated example -- YAML merging
 
@@ -23,7 +25,7 @@ In many projects of mine including
 {https://github.com/blambeau/agora agora} or 
 {https://github.com/blambeau/dbagile dbagile}, there is this need of being able 
 to merge YAML files. Merging YAML files is complex because you need full control 
-of how merging applies on specific tree nodes. summaryse solves this.
+of how merging applies on specific tree nodes. Summaryse solves this.
 
     # This is left.yaml
     left = YAML.load ...      # syntactically wrong, but to avoid Yard's rewriting
