@@ -76,6 +76,7 @@ class Array
       self.send(agg)
     when Hash
       big = Hash.new{|h,k| h[k] = []}
+      agg.each_key{|k| big[k] = [] unless k.nil?}
       each{|t| t.each_pair{|k,v| big[k] << v}}
       Hash[big.collect{|k,v|
         if summ = (agg[k] || agg[nil])

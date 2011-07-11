@@ -155,6 +155,17 @@ will be called with the array of values on which aggregation must be done:
     })
     # => {:hobbies => [:ruby, :music], :size => "12, 17"}
 
+### Unexisting keys
+
+Specifying unexisting keys is also permitted. In this case, the evaluation is 
+done on an empty array:
+
+    [
+      { :hobbies => [:ruby],  :size => 12 },
+      { :hobbies => [:music], :size => 17 }
+    ].summaryse(:hello => lambda{|a| a})
+    # => {:hello => []}
+
 ## On Arrays of Hash-es
 
 Summarizing an Array of Array-s of Hash-es yields -> an Array of Hash-es

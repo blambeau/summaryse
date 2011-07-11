@@ -58,6 +58,11 @@ describe "README file" do
       a.join(', ')
     }).should eq(:hobbies => [:ruby, :music], :size => "12, 17")
 
+    [
+      { :hobbies => [:ruby],  :size => 12 },
+      { :hobbies => [:music], :size => 17 }
+    ].summaryse(:hello => lambda{|a| a}).should eq(:hello => [])
+
     [ 
       { :hobbies => {:day => [:ruby], :night => [:ruby] } },
       { :hobbies => {:day => [],      :night => [:sleep]} }

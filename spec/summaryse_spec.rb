@@ -87,6 +87,11 @@ describe Summaryse do
       rel.summaryse(control).should eq(:size => "hello")
     end
 
+    it "should allow specifying unexisting keys" do
+      control = {:no_such => lambda{|a| a}}
+      rel.summaryse(control).should eq(:no_such => [])
+    end
+
   end # Hash argument
 
   describe "when called with an Array argument" do
