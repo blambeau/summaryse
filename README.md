@@ -1,4 +1,4 @@
-# Array#summaryse
+# Array#summaryse (version 1.1.0)
 
     [sudo] gem install summaryse
 
