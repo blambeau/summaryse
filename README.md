@@ -225,7 +225,14 @@ This also allows handling parameters:
     end
     [1, 4, 12, 7].summaryse(:comma_join) # => "1, 4, 12, 7"
 
-# By the way, why this stupid name?
+# Contribute, Versioning and so on.
+
+As usual: the code is on {http://github.com/blambeau/summaryse github}, I follow
+{http://semver.org/ semantic versioning} (the public API is almost everything but 
+implementation details, that is, the method name, its recognized arguments and 
+the semantics of the returned value), etc.
+
+## By the way, why this stupid name?
 
 Just because summarize was already an {https://rubygems.org/gems/summarize existing gem}. 
 Summaryse is also much less likely to cause a name clash on the Array class. And
@@ -236,10 +243,3 @@ to) {http://en.wikipedia.org/wiki/D_(data_language_specification)#Tutorial_D TUT
 summarization operator on relations. See my {https://github.com/blambeau/alf alf} 
 project. Array#summaryse is rubyiesque in mind and does not conform to a purely 
 relational vision of summarization, though.
-
-# Contribute, Versioning and so on.
-
-As usual: the code is on {http://github.com/blambeau/summaryse github}, I follow
-{http://semver.org/ semantic versioning} (the public API is almost everything but 
-implementation details, that is, the method name, its recognized arguments and 
-the semantics of the returned value), etc.
