@@ -142,19 +142,6 @@ behavior to use on others:
     ].summaryse(:hobbies => :union, nil => :first)
     # => {:hobbies => [:ruby, :music], :size => 12}
 
-### Specifying with lambdas
-
-When no default summarization function fit your needs, just pass a lambda. It 
-will be called with the array of values on which aggregation must be done:
-
-    [
-      { :hobbies => [:ruby],  :size => 12 },
-      { :hobbies => [:music], :size => 17 }
-    ].summaryse(:hobbies => :union, :size => lambda{|a|
-      a.join(', ')
-    })
-    # => {:hobbies => [:ruby, :music], :size => "12, 17"}
-
 ### Unexisting keys
 
 Specifying unexisting keys is also permitted. In this case, the evaluation is 
@@ -190,7 +177,7 @@ this is the order in which they have been seen initially.
 
 # Some extra goodness
 
-## Empty arrays
+## On empty arrays
 
 For now, no special support is provided for the corner cases. One could argue 
 that the sum of an empty array should be 0, but this is wrong because of duck
@@ -212,6 +199,19 @@ almost all empty cases unless the semantics is very clear:
 Special support for specifying a default value to use on empty arrays should
 be provided around 2.0. Don't hesitate too contribute a patch if you need it 
 earlier.
+
+## Specifying with lambdas
+
+When no default summarization function fit your needs, just pass a lambda. It 
+will be called with the array of values on which aggregation must be done:
+
+    [
+      { :hobbies => [:ruby],  :size => 12 },
+      { :hobbies => [:music], :size => 17 }
+    ].summaryse(:hobbies => :union, :size => lambda{|a|
+      a.join(', ')
+    })
+    # => {:hobbies => [:ruby, :music], :size => "12, 17"}
 
 ## Registering your own aggregators
 
