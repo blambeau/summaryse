@@ -114,4 +114,25 @@ describe "README file" do
     [ left, right ].summaryse(merge).should eq(exp)
   end
 
+  describe "Extra goodness" do
+
+    specify "On empty arrays" do
+      [].summaryse(:count).should eq(0)
+      [].summaryse(:first).should be_nil
+      [].summaryse(:intersection).should be_nil
+      [].summaryse(:last).should be_nil
+      [].summaryse(:min).should be_nil
+      [].summaryse(:sum).should be_nil
+      [].summaryse(:union).should be_nil
+    end
+
+    specify "Installing your own aggregators" do
+      Summaryse.register(:comma_join) do |ary|
+       ary.join(', ')
+      end
+      [1, 4, 12, 7].summaryse(:comma_join).should eq("1, 4, 12, 7")
+    end
+
+  end
+
 end

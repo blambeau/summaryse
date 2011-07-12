@@ -188,6 +188,43 @@ returned hashes are in order of encountered 'by key' values. That is, in the
 example above, yard comes before summaryse that comes before treetop because 
 this is the order in which they have been seen initially.
 
+# Some extra goodness
+
+## Empty arrays
+
+For now, no special support is provided for the corner cases. One could argue 
+that the sum of an empty array should be 0, but this is wrong because of duck
+typing (maybe you try to sum something else)... A nil value is returned in 
+almost all empty cases unless the semantics is very clear:
+
+    [].summaryse(:count)  # => 0
+    [].summaryse(:sum)    # => nil
+    [].summaryse(:avg)    # => nil
+
+    [].summaryse(:min)    # => nil
+    [].summaryse(:max)    # => nil
+    [].summaryse(:first)  # => nil
+    [].summaryse(:last)   # => nil
+
+    [].summaryse(:intersection)  # => nil
+    [].summaryse(:union)         # => nil
+
+Special support for specifying a default value to use on empty arrays should
+be provided around 2.0. Don't hesitate too contribute a patch if you need it 
+earlier.
+
+## Registering your own aggregators
+
+Since 1.1, you can register your own aggregation functions. Such function simply
+takes a single argument which is an array of values to aggregate. This is 
+especially useful to install new and/or override existing aggregation functions.
+This also allows handling parameters:
+
+    Summaryse.register(:comma_join) do |ary|
+      ary.join(', ')
+    end
+    [1, 4, 12, 7].summaryse(:comma_join) # => "1, 4, 12, 7"
+
 # By the way, why this stupid name?
 
 Just because summarize was already an {https://rubygems.org/gems/summarize existing gem}. 
@@ -206,9 +243,3 @@ As usual: the code is on {http://github.com/blambeau/summaryse github}, I follow
 {http://semver.org/ semantic versioning} (the public API is almost everything but 
 implementation details, that is, the method name, its recognized arguments and 
 the semantics of the returned value), etc.
-
-Now, frankly, you can also copy/paste the source code of this simple array 
-extension in your own project. This tend to be much friendly and much simpler 
-than using a gem, IMHO. Reuse by copy-pasting even has a name:
-{http://revision-zero.org/reuse code scavenging}. 
- 
