@@ -51,11 +51,19 @@ describe Summaryse do
 
     it "should recognize sum" do
       numbers.summaryse(:sum).should eq(15 + 3 + 17 + 4 + 12)
-      arrays.summaryse(:sum).should eq([ 15, 3, 12, 17, 4, 12])
+      arrays.summaryse(:sum).should eq([15, 3, 12, 17, 4, 12])
     end
 
     it "should recognize union" do
       arrays.summaryse(:union).should eq([15, 3, 12, 17, 4])
+    end
+
+    it "should delegate to existing method otherwise" do
+      [1, 2, 2].summaryse(:uniq).should == [1, 2]
+    end
+
+    it "should raise when not found" do
+      lambda{ [1, 2, 2].summaryse(:no_such_one) }.should raise_error(ArgumentError)
     end
 
   end # Symbol argument

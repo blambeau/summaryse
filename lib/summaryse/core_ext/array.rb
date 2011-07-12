@@ -62,18 +62,14 @@ class Array
     case agg
     when Proc
       agg.call(self)
-    when :avg
-      inject(:+).to_f/size
-    when :count
-      size
-    when :intersection
-      inject(:&)
-    when :sum
-      inject(:+)
-    when :union
-      inject(:|)
     when Symbol
-      self.send(agg)
+      if fn = Summaryse.aggregator(agg)
+        fn.call(self)
+      elsif self.respond_to?(agg)
+        self.send(agg)
+      else
+        raise ArgumentError, "No such aggregation function #{agg}"
+      end
     when Hash
       big = Hash.new{|h,k| h[k] = []}
       agg.each_key{|k| big[k] = [] unless k.nil?}
