@@ -133,6 +133,14 @@ describe "README file" do
       [1, 4, 12, 7].summaryse(:comma_join).should eq("1, 4, 12, 7")
     end
 
+    specify "bypassing entries" do
+      agg = {:size => :max, :hobbies => lambda{|a| Summaryse::BYPASS}}
+      [
+        { :hobbies => [:ruby],  :size => 12 },
+        { :hobbies => [:music], :size => 17 }
+      ].summaryse(agg).should eq({:size => 17})
+    end
+
   end
 
 end

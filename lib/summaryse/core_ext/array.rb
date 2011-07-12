@@ -76,7 +76,8 @@ class Array
       each{|t| t.each_pair{|k,v| big[k] << v}}
       Hash[big.collect{|k,v|
         if summ = (agg[k] || agg[nil])
-          [k,v.summaryse(summ)]
+          res = v.summaryse(summ)
+          res == Summaryse::BYPASS ? nil : [k, res]
         end
       }.compact]
     when Array

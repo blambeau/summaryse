@@ -24,6 +24,15 @@
         end
         [1, 2, 3].summaryse(Foo.new).should eq(6)
 
+  * Added the ability to explicitly bypass Hash entries as the result of a 
+    computation, by returning Summaryse::BYPASS
+
+        [
+          { :hobbies => [:ruby],  :size => 12 },
+          { :hobbies => [:music], :size => 17 }
+        ].summaryse(:size => :max, :hobbies => lambda{|a| Summaryse::BYPASS})
+        # => {:size => "17"}
+
   * The semantics of aggregating empty arrays is specified in README. Due to
     duck typing, this means that nil is returned in almost all cases.
 

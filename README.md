@@ -243,6 +243,18 @@ Symbol, a Proc, a Hash, an Array, or even another such object:
     end
     [1, 2, 3].summaryse(Bar.new).should eq(6)
 
+## Bypassing Hash entries
+
+It is sometimes useful to explicit bypass specific Hash entries as the result of 
+the computation. Entries for which the aggregator returns Summaryse::BYPASS will
+be simply removed from the result:
+
+    [
+      { :hobbies => [:ruby],  :size => 12 },
+      { :hobbies => [:music], :size => 17 }
+    ].summaryse(:size => :max, :hobbies => lambda{|a| Summaryse::BYPASS})
+    # => {:size => "17"}
+
 # Contribute, Versioning and so on.
 
 As usual: the code is on {http://github.com/blambeau/summaryse github}, I follow

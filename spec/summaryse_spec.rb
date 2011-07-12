@@ -101,6 +101,11 @@ describe Summaryse do
       rel.summaryse(control).should eq(:no_such => [])
     end
 
+    it "should allow specifying bypassed keys" do
+      control = {:size => :max, :hobbies => lambda{|a| Summaryse::BYPASS}}
+      rel.summaryse(control).should eq(:size => 12)
+    end
+
   end # Hash argument
 
   describe "when called with an Array argument" do

@@ -2,6 +2,9 @@ require "summaryse/version"
 require "summaryse/loader"
 module Summaryse
 
+  # Bypass marker
+  BYPASS = Object.new
+
   #
   # Registers a aggregation function under a given name.
   #
