@@ -25,36 +25,44 @@ describe Summaryse do
     end
     
     it "should recognize count" do
+      [].summaryse(:count).should eq(0)
       numbers.summaryse(:count).should eq(5)
       arrays.summaryse(:count).should eq(2)
     end
 
     it "should recognize first" do
+      [].summaryse(:first).should be_nil
       numbers.summaryse(:first).should eq(15)
     end
 
     it "should recognize intersection" do
+      [].summaryse(:intersection).should be_nil
       arrays.summaryse(:intersection).should eq([12])
     end
 
     it "should recognize last" do
+      [].summaryse(:last).should be_nil
       numbers.summaryse(:last).should eq(12)
     end
 
     it "should recognize min" do
+      [].summaryse(:min).should be_nil
       numbers.summaryse(:min).should eq(3)
     end
 
     it "should recognize max" do
+      [].summaryse(:max).should be_nil
       numbers.summaryse(:max).should eq(17)
     end
 
     it "should recognize sum" do
+      [].summaryse(:sum).should be_nil
       numbers.summaryse(:sum).should eq(15 + 3 + 17 + 4 + 12)
       arrays.summaryse(:sum).should eq([15, 3, 12, 17, 4, 12])
     end
 
     it "should recognize union" do
+      [].summaryse(:union).should be_nil
       arrays.summaryse(:union).should eq([15, 3, 12, 17, 4])
     end
 
