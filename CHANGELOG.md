@@ -16,10 +16,21 @@
         ].summaryse(:hello => lambda{|a| a})
         # => {:hello => []}
 
+  * Added the ability to use objects responding to to_summaryse as aggregator
+    functions:
+
+        class Foo
+          def to_summaryse; :sum; end
+        end
+        [1, 2, 3].summaryse(Foo.new).should eq(6)
+
   * The semantics of aggregating empty arrays is specified in README. Due to
     duck typing, this means that nil is returned in almost all cases.
 
   * Best-effort for yielding friendly hash ordering under ruby >= 1.9
+  
+  * Array#summaryse now raises an ArgumentError if it does not understand its
+    aggregator argument.
 
 # 1.0.0 / 2011.07.11
 

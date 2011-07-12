@@ -121,4 +121,28 @@ describe Summaryse do
     end
   end
 
+  describe "when called with a to_summarysable argument" do
+
+    it "should summarize as defined by the method" do
+      class Foo
+        def to_summaryse; :sum; end
+      end
+      [1, 2, 3].summaryse(Foo.new).should eq(6)
+
+      class Bar
+        def to_summaryse; Foo.new; end
+      end
+      [1, 2, 3].summaryse(Bar.new).should eq(6)
+    end
+
+  end
+
+  describe "when called with something unconvertible" do
+  
+    specify do
+      lambda{ [1,2,3].summaryse(Object.new).should raise_error(ArgumentError) }
+    end
+
+  end
+
 end

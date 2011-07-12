@@ -225,6 +225,24 @@ This also allows handling parameters:
     end
     [1, 4, 12, 7].summaryse(:comma_join) # => "1, 4, 12, 7"
 
+## Aggregator objects
+
+Sometimes it is useful to use your own objects as aggregators. For this, simply
+provide them a to_summaryse function that returns an aggregation function:
+
+    class Foo
+      def to_summaryse; :sum; end
+    end
+    [1, 2, 3].summaryse(Foo.new).should eq(6)
+
+Returned object is anything that can be seen as an aggregation function: a 
+Symbol, a Proc, a Hash, an Array, or even another such object:
+
+    class Bar
+      def to_summaryse; Foo.new; end
+    end
+    [1, 2, 3].summaryse(Bar.new).should eq(6)
+
 # Contribute, Versioning and so on.
 
 As usual: the code is on {http://github.com/blambeau/summaryse github}, I follow

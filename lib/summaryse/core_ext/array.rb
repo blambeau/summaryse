@@ -90,6 +90,12 @@ class Array
       }
       agg = Hash[by.collect{|k| [k, :first]}].merge(agg)
       keys.uniq.collect{|key| grouped[key].summaryse(agg)}
+    else
+      if agg.respond_to?(:to_summaryse)
+        summaryse(agg.to_summaryse)
+      else
+        raise ArgumentError, "Unable to convert #{agg} to an aggregation function"
+      end
     end
   end
 
